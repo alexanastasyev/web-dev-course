@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Android development</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <div class="content-container">
+        <a href="index.html">
+            <div class="head">
+                <h1 class="main-header">Mobile development</h1>
+                <img class="logo" src="img/logo.png" alt="logo" width="48" height="48">
+            </div>
+        </a>
+        <div class="nav-panel" onmouseover="hideImageIcon()">
+            <a href="android.html">
+                <div class="nav-button">Android</div>
+            </a>
+            <a href="ios.html">
+                <div class="nav-button">IOS</div>
+            </a>
+            <a href="multiplatform.html">
+                <div class="nav-button">Multiplatform</div>
+            </a>
+        </div>
+
+        <div class="main-info" onmouseover="showImageIcon()">
+            <p>
+                <b>Android software development</b> is the process by which applications are created for devices running the
+                Android operating system.
+            </p>
+            <p>
+                Google states that "Android apps can be written using Kotlin, Java, and
+                C++ languages" using the Android software development kit (SDK), while using other languages is also
+                possible. All non-Java virtual machine (JVM) languages, such as Go, JavaScript, C, C++ or assembly,
+                need the help of JVM language code, that may be supplied by tools, likely with restricted API support.
+            </p>
+            <p>
+                Some programming languages and tools allow cross-platform app support (i.e. for both Android and iOS).
+                Third party tools, development environments, and language support have also continued to evolve and
+                expand since the initial SDK was released in 2008. The official Android app distribution mechanism to
+                end users is Google Play; it also allows staged gradual app release, as well as distribution of
+                pre-release app versions to testers.
+            </p>
+        </div>
+
+        <span class="fa fa-eye" id="buttonShowImage" onclick="showImage()"></span>
+        <div id="modalImageDiv" class="modal">
+            <span class="close" onclick="hideImage()">&times;</span>
+            <img class="modal-content" id="modalImage">
+        </div>
+
+    </div>
+
+</body>
+</html>

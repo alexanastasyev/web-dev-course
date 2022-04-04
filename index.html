@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile development</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+</head>
+
+<script>
+    function writeToAlert() {
+        alert("Alert message!")
+    }
+</script>
+
+<body>
+
+    <div class="content-container">
+        <a href="index.html">
+            <div class="head">
+                <h1 class="main-header">Mobile development</h1>
+                <img class="logo" src="img/logo.png" alt="logo" width="48" height="48">
+            </div>
+        </a>
+        <div class="nav-panel">
+            <a href="android.html">
+                <div class="nav-button">Android</div>
+            </a>
+            <a href="ios.html">
+                <div class="nav-button">IOS</div>
+            </a>
+            <a href="multiplatform.html">
+                <div class="nav-button">Multiplatform</div>
+            </a>
+        </div>
+
+        <div>
+            <button class="btn-test" onclick="writeToAlert()">ALERT MESSAGE ON CLICK</button>
+            <button class="btn-test" onclick="changeBodyBgColor()">CHANGE BG ON CLICK!</button>
+            <a href="Javascript: alert('JS from <a>!!!')"><button class="btn-test">ALERT MESSAGE FROM URL</button></a>
+        </div>
+
+        <div>
+            <button class="btn-test" onmouseover="writeToAlert()">ALERT ON HOVER</button>
+            <button class="btn-test" onmouseover="changeBodyBgColor()">CHANGE BG ON HOVER</button>
+            <a href="Javascript: location.reload()"><button class="btn-test">REFRESH</button></a>
+        </div>
+
+        <div class="main-info">
+            <p>
+                <b>Mobile app development</b> is the act or process by which a mobile app is developed for mobile devices,
+                such as personal digital assistants, enterprise digital assistants or mobile phones. These software
+                applications are designed to run on mobile devices, such as a smartphone or tablet computer.
+            </p>
+
+            <p>
+                These applications can be pre-installed on phones during manufacturing platforms, or delivered as web
+                applications using server-side or client-side processing (e.g., JavaScript) to provide an
+                "application-like" experience within a web browser. Application software developers also must consider
+                a long array of screen sizes, hardware specifications, and configurations because of intense competition
+                in mobile software and changes within each of the platforms. Mobile app development has been steadily
+                growing, in revenues and jobs created. A 2013 analyst report estimates there are <u>529,000</u> direct app
+                economy jobs within the EU then 28 members (including the UK), <u>60 percent</u> of which are mobile app
+                developers.
+            </p>
+
+            <p>
+                Mobile development can be divided into three main directions:
+            </p>
+            <ul>
+                <li>Android development</li>
+                <li>IOS development</li>
+                <li>Multiplatform development</li>
+            </ul>
+
+            <p>
+                Percentage of platform popularity:
+            </p>
+
+            <table class="table-data">
+                <thead>
+                <tr>
+                    <td><b>Platform</b></td>
+                    <td><b>Popularity</b></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Android</td>
+                    <td>69%</td>
+                </tr>
+                <tr>
+                    <td>IOS</td>
+                    <td>27%</td>
+                </tr>
+                <tr>
+                    <td>Multiplatform</td>
+                    <td>12%</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
