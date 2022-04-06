@@ -114,6 +114,10 @@ td {
     cursor: pointer;
 }
 
+.result-block {
+    margin-top: 30px;
+}
+
 #buttonShowImage {
     display: none;
     font-size: 2rem;

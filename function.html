@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function tabulation</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script/func.js"></script>
+</head>
+<body>
+    <div class="content-container">
+        <a href="index.html">
+            <div class="head">
+                <h1 class="main-header">Mobile development</h1>
+                <img class="logo" src="img/logo.png" alt="logo" width="48" height="48">
+            </div>
+        </a>
+        <div class="nav-panel">
+            <a href="android.html">
+                <div class="nav-button">Android</div>
+            </a>
+            <a href="ios.html">
+                <div class="nav-button">IOS</div>
+            </a>
+            <a href="multiplatform.html">
+                <div class="nav-button">Multiplatform</div>
+            </a>
+            <a href="function.html">
+                <div class="nav-button">Function</div>
+            </a>
+        </div>
+
+        <div class="main-info">
+
+            <div>
+                X (integer):&emsp;
+                <label>
+                    from:&emsp;
+                    <input name="xFrom" type="number" placeholder="x from" step="1">
+                </label>
+                <label>
+                    &emsp;to:&emsp;
+                    <input name="xTo" type="number" placeholder="x to" step="1">
+                </label>
+            </div>
+
+            <div>
+                Y (integer):&emsp;
+                <label>
+                    from:&emsp;
+                    <input name="yFrom" type="number" placeholder="y from" step="1">
+                </label>
+                <label>
+                    &emsp;to:&emsp;
+                    <input name="yTo" type="number" placeholder="y to" step="1">
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    NM1 (integers from 2 to 6):&emsp;
+                    <input name="nm1" type="number" placeholder="nm1" min="2" max="6" step="1">
+                </label>
+            </div>
+            <div>
+                <label>
+                    NM2 (integers from 2 to 6):&emsp;
+                    <input name="nm2" type="number" placeholder="nm2" min="2" max="6" step="1">
+                </label>
+            </div>
+            <div>
+                <label>
+                    A:&emsp;
+                    <input name="a" type="number" placeholder="a">
+                </label>
+            </div>
+            <div>
+                <button onclick="tabulate()">Tabulate!</button>
+            </div>
+
+            <div class="result-block">
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
