@@ -2,19 +2,7 @@ function createTable() {
     const resultElem = document.getElementsByClassName("result-block")[0];
     resultElem.innerHTML = "";
 
-    const tableNumberElem = document.getElementsByName("tableNumber")[0];
-    let userTableNumber = Math.floor(Number(tableNumberElem.value));
-
-    if (userTableNumber < 1) {
-        userTableNumber = 1;
-    }
-    if (userTableNumber > 50) {
-        userTableNumber = 50;
-    }
-
-    const tableNumber = userTableNumber;
-
-    tableNumberElem.value = tableNumber.toString();
+    const tableNumber = getTableNumber();
 
     const table = document.createElement("table");
     table.id = "tableResult";
@@ -52,10 +40,24 @@ function createTable() {
 
 }
 
+function getTableNumber() {
+    const tableNumberElem = document.getElementsByName("tableNumber")[0];
+    let tableNumber = Math.floor(Number(tableNumberElem.value));
+
+    if (tableNumber < 1) {
+        tableNumber = 1;
+    }
+    if (tableNumber > 50) {
+        tableNumber = 50;
+    }
+
+    tableNumberElem.value = tableNumber.toString();
+
+    return tableNumber;
+}
+
 function removeRows() {
-    const sumElem = document.getElementsByName("sumForRemove")[0];
-    const sum = Math.floor(Number(sumElem.value));
-    sumElem.value = sum.toString();
+    const sum = getRemoveSum();
 
     const table = document.getElementById("tableResult");
     const tableRows = table.rows;
@@ -75,6 +77,13 @@ function removeRows() {
 
         i++;
     }
+}
+
+function getRemoveSum() {
+    const sumElem = document.getElementsByName("sumForRemove")[0];
+    const sum = Math.floor(Number(sumElem.value));
+    sumElem.value = sum.toString();
+    return sum;
 }
 
 function findSum() {
