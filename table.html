@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script/table.js"></script>
+</head>
+<body>
+
+    <div class="content-container">
+        <a href="index.html">
+            <div class="head">
+                <h1 class="main-header">Mobile development</h1>
+                <img class="logo" src="img/logo.png" alt="logo" width="48" height="48">
+            </div>
+        </a>
+        <div class="nav-panel">
+            <a href="android.html">
+                <div class="nav-button">Android</div>
+            </a>
+            <a href="ios.html">
+                <div class="nav-button">IOS</div>
+            </a>
+            <a href="multiplatform.html">
+                <div class="nav-button">Multiplatform</div>
+            </a>
+            <a href="function.html">
+                <div class="nav-button">Function</div>
+            </a>
+            <a href="table.html">
+                <div class="nav-button">Table</div>
+            </a>
+        </div>
+
+        <div class="main-info">
+
+            <div>
+                <label>
+                    Input number (from 1 to 50):&emsp;
+                    <input name="tableNumber" type="number" placeholder="" step="1" min="1" max="50" value="6">
+                </label>
+            </div>
+
+            <div class="table-button">
+                <button onclick="createTable()">Create table!</button>
+            </div>
+
+            <div class="extra-buttons">
+                <div>
+                    <label>
+                        Input sum:&emsp;
+                        <input name="sumForRemove" type="number" placeholder="" step="1" value="10">
+                    </label>
+                </div>
+
+                <div class="table-button">
+                    <button onclick="removeRows()">Remove rows!</button>
+                </div>
+
+                <br/>
+
+                <div class="table-button">
+                    <button onclick="findSum()">Find sum!</button>
+                </div>
+
+                <div class="table-button">
+                    <button onclick="findAverage()">Find average!</button>
+                </div>
+
+                <br/>
+
+                <div class="table-button">
+                    <button onclick="flipTable()">Flip table!</button>
+                </div>
+
+            </div>
+
+            <div class="result-block">
+
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

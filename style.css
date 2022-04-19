@@ -118,6 +118,23 @@ td {
     margin-top: 30px;
 }
 
+.table-button {
+    margin-top: 10px;
+}
+
+.table-item-red {
+    background-color: red;
+}
+
+.table-item-blue {
+    background-color: deepskyblue;
+}
+
+.extra-buttons {
+    margin-top: 20px;
+    visibility: hidden;
+}
+
 #buttonShowImage {
     display: none;
     font-size: 2rem;
