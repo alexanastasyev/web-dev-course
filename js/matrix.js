@@ -186,9 +186,9 @@ function sortArray(array, asc) {
 }
 
 function removeEvens(array) {
-    return array.filter(value => Math.floor(value) % 2 !== 0);
+    return array.filter(value => Math.trunc(value) % 2 !== 0);
 }
 
 function removeOdds(array) {
-    return array.filter(value => Math.floor(value) % 2 === 0);
+    return array.filter(value => Math.trunc(value) % 2 === 0);
 }
