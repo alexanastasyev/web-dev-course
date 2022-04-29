@@ -8,32 +8,28 @@ function createMatrices() {
 
     const resultTable = document.createElement("table");
 
-    appendHeaderRow(resultTable, "Default matrices:");
-
     const matrix1 = generateMatrix(matrixSize, minValue, maxValue);
     const matrix2 = generateMatrix(matrixSize, minValue, maxValue);
 
     const table1 = generateMatrixTable(matrix1);
     const table2 = generateMatrixTable(matrix2);
 
+    appendHeaderRow(resultTable, "Default matrices:");
     appendValueRow(resultTable, table1, table2);
-
-    appendHeaderRow(resultTable, "Vectors with average row values:");
 
     const averages1 = getAverageRowsArray(matrix1);
     const averages2 = getAverageRowsArray(matrix2);
 
+    appendHeaderRow(resultTable, "Vectors with average row values:");
     appendValueRow(resultTable, averages1, averages2);
-
-    appendHeaderRow(resultTable, "Sorted vectors:");
 
     const sortedAverages1 = sortArrayAsc(averages1);
     const sortedAverages2 = sortArrayDesc(averages2);
 
+    appendHeaderRow(resultTable, "Sorted vectors:");
     appendValueRow(resultTable, sortedAverages1, sortedAverages2);
 
     appendHeaderRow(resultTable, "Delete values:");
-
     appendValueRow(resultTable, removeEvens(sortedAverages1), removeOdds(sortedAverages2));
 
     resultElem.appendChild(resultTable);
