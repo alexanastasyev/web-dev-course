@@ -107,7 +107,7 @@ function randomIntFromInterval(min, max) {
 
 function getAverageRowsArray(matrix) {
     const averages = [];
-    matrix.map((value, index) => averages[index] = findAverage(value));
+    matrix.map((value, index) => averages[index] = round2Digits(findAverage(value)));
     return averages;
 }
 
@@ -191,4 +191,8 @@ function removeEvens(array) {
 
 function removeOdds(array) {
     return array.filter(value => Math.trunc(value) % 2 === 0);
+}
+
+function round2Digits(number) {
+    return Math.round(number * 100) / 100;
 }
