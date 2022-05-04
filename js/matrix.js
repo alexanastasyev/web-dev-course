@@ -66,15 +66,9 @@ function getMaxValue() {
 }
 
 function generateMatrix(size, from, to) {
-    const matrix = [];
-    for (let i = 0; i < size; i++) {
-        const row = [];
-        for (let j = 0; j < size; j++) {
-            row[j] = randomIntFromInterval(from, to);
-        }
-        matrix[i] = row;
-    }
-    return matrix;
+    return Array.from({length: size}, () =>
+        Array.from({length: size}, () => randomIntFromInterval(from, to))
+    );
 }
 
 function generateMatrixTable(matrix) {
@@ -119,26 +113,22 @@ function appendHeaderRow(table, text) {
 
 function appendValueRow(table, valueLeft, valueRight) {
     const row = document.createElement("tr");
-
-    const cell1 = document.createElement("td");
-    cell1.style.paddingRight = "50px";
-    if (isNode(valueLeft)) {
-        cell1.appendChild(valueLeft);
-    } else {
-        cell1.innerText = valueLeft;
-    }
-    row.appendChild(cell1);
-
-    const cell2 = document.createElement("td");
-    cell2.style.paddingLeft = "50px";
-    if (isNode(valueRight)) {
-        cell2.appendChild(valueRight);
-    } else {
-        cell2.innerText = valueRight;
-    }
-    row.appendChild(cell2);
-
+    appendCell(valueLeft, row);
+    appendCell(valueRight, row);
     table.appendChild(row);
+}
+
+function appendCell(value, row) {
+    const cell = document.createElement("td");
+    cell.style.paddingRight = "50px";
+    cell.style.paddingTop = "15px";
+    cell.style.paddingBottom = "15px";
+    if (isNode(value)) {
+        cell.appendChild(value);
+    } else {
+        cell.innerText = value;
+    }
+    row.appendChild(cell);
 }
 
 function isNode(object){
@@ -158,25 +148,9 @@ function sortArrayDesc(array) {
 
 function sortArray(array, asc) {
     if (asc) {
-        array.sort(function (a, b) {
-            if (a > b) {
-                return 1;
-            } else if (a < b) {
-                return -1;
-            } else {
-                return 0;
-            }
-        });
+        array.sort((a, b) => a - b);
     } else {
-        array.sort(function (a, b) {
-            if (a > b) {
-                return -1;
-            } else if (a < b) {
-                return 1;
-            } else {
-                return 0;
-            }
-        });
+        array.sort((a, b) => b - a);
     }
     return array;
 }
