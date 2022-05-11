@@ -6,9 +6,9 @@ function showImage() {
     const url = window.location.href;
     let src = "";
     if (url.indexOf("android") > 0) {
-        src = "img/android.png";
+        src = "../img/android.png";
     } else if (url.indexOf("ios") > 0) {
-        src = "img/ios.jpg";
+        src = "../img/ios.jpg";
     }
     modalImg.src = src;
 }
