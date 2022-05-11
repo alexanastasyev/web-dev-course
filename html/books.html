@@ -15,7 +15,7 @@
                 <img class="logo" src="../img/logo.png" alt="logo" width="48" height="48">
             </div>
         </a>
-        <div class="nav-panel" onmouseover="hideImageIcon()">
+        <div class="nav-panel">
             <a href="android.html">
                 <div class="nav-button">Android</div>
             </a>
@@ -44,13 +44,98 @@
             <div>
                 <label>
                     How many books to show? (from 1 to 100):&emsp;
-                    <input name="booksNumber" type="number" placeholder="" step="1" min="1" max="100" value="15">
+                    <input name="booksNumber" type="number" placeholder="" step="1" min="1" max="100" value="20"/>
                 </label>
             </div>
 
             <div class="action-button">
-                <button onclick="showBooks()">Show books!</button>
+                <button onclick="generateBooks()">Show new books!</button>
             </div>
+
+            <br/><br/>
+
+            <table id="functionsTable" hidden>
+                <tr>
+                    <td class="function-block">
+                        Filter by:
+                        <div>
+                            <input id="filterAuthor" name="filterAuthor" type="radio" onclick="authorClicked()">
+                            <label for="filterAuthor">Author</label><br/>
+
+                            <input id="filterGenre" name="filterGenre" type="radio" onclick="genreClicked()">
+                            <label for="filterGenre">Genre</label><br/>
+
+                            <input id="filterYear" name="filterYear" type="radio" onclick="yearClicked()">
+                            <label for="filterYear">Year of publishing</label><br/>
+
+                            <input id="filterNo" name="filterNo" type="radio" onclick="noFilterClicked()" checked>
+                            <label for="filterNo">No filter</label><br/>
+                        </div>
+
+                        <div id="authorFilterBlock" hidden>
+                            <br/>
+                            <label>
+                                Author last name:&emsp;
+                                <input name="authorLastName"/>
+                            </label>
+                        </div>
+
+                        <div id="genreFilterBlock" hidden>
+                            <br/>
+                            <label>
+                                Genre:&emsp;
+                                <select name="genreSelected">
+                                    <option value="Роман">Роман</option>
+                                    <option value="Детектив">Детектив</option>
+                                    <option value="Фантастика">Фантастика</option>
+                                    <option value="Экшен">Экшен</option>
+                                    <option value="Приключения">Приключения</option>
+                                    <option value="Детское">Детское</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <div id="yearsFilterBlock" hidden>
+                            <br/>
+                            <label>
+                                From:&emsp;
+                                <input name="yearFrom" type="number" min="0" max="2050" step="1"/>
+                            </label>
+                            &emsp;&emsp;
+                            <label>
+                                To:&emsp;
+                                <input name="yearTo" type="number" min="0" max="2050" step="1"/>
+                            </label>
+                        </div>
+
+                        <div id="filterButton" class="action-button" hidden>
+                            <button onclick="filterBooks()">Filter</button>
+                        </div>
+                    </td>
+
+                    <td class="function-block">
+                        <label>
+                            Remove pages if less then (positive):&emsp;<br/>
+                            <input name="pagesNumber" type="number" min="0" step="1" value="500"/>
+                        </label>
+                        <div class="action-button">
+                            <button onclick="removePages()">Remove</button>
+                        </div>
+                    </td>
+
+                    <td class="function-block">
+                        <div class="action-button">
+                            <button onclick="showAges()">Show ages</button>
+                        </div>
+                    </td>
+
+                    <td class="function-block">
+                        <div class="action-button">
+                            <button onclick="getJSON()">Get as JSON</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
 
             <div class="result-block">
 

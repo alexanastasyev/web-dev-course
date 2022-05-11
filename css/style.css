@@ -135,6 +135,13 @@ td {
     visibility: hidden;
 }
 
+.function-block {
+    padding: 10px 20px;
+    vertical-align: top;
+    border: solid 1px;
+    border-collapse: collapse;
+}
+
 #buttonShowImage {
     display: none;
     font-size: 2rem;
@@ -142,4 +149,8 @@ td {
 
 #buttonShowImage:hover {
     cursor: pointer;
+}
+
+#functionsTable {
+    border-collapse: collapse;
 }

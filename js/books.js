@@ -1,16 +1,24 @@
-function showBooks() {
-    const resultElem = document.getElementsByClassName("result-block")[0];
-    resultElem.innerHTML = "";
+const books = [];
+
+function generateBooks() {
+    removeFilter();
+
+    books.length = 0;
 
     const booksNumber = getBooksNumber();
 
-    const books = [];
     for (let i = 0; i < booksNumber; i++) {
         books[i] = generateRandomBook();
     }
 
-    const table = createTable(books);
+    updateTable(books);
+    document.getElementById("functionsTable").hidden = false;
+}
 
+function updateTable(books) {
+    const resultElem = document.getElementsByClassName("result-block")[0];
+    resultElem.innerHTML = "";
+    const table = createTable(books);
     resultElem.appendChild(table);
 }
 
@@ -33,12 +41,8 @@ function getBooksNumber() {
 function generateRandomBook() {
     return {
         title: generateRandomTitle(),
-        genre: randomFromArray(["Роман", "Детектив", "Фантастика", "Экшн", "Приключения", "Детское"]),
-        publishDate: {
-            day: randomIntFromInterval(1, 30),
-            month: randomIntFromInterval(1, 12),
-            year: randomIntFromInterval(1700, 2022)
-        },
+        genre: randomFromArray(["Роман", "Детектив", "Фантастика", "Экшен", "Приключения", "Детское"]),
+        publishDate: randomDate(new Date(1700, 0, 1), new Date()),
         instancesNumber: randomIntFromInterval(1, 100000),
         author: {
             firstName: randomFromArray(["Иван", "Пётр", "Алексей", "Александр", "Илья", "Борис"]),
@@ -50,15 +54,28 @@ function generateRandomBook() {
 }
 
 function generateRandomTitle() {
-    const titles1 = ["Завоевание", "Поход", "Приключения", "Жизнеопсиание", "История", "Особенности"];
-    const titles2 = ["отважных", "странных", "юных", "весёлых", "дружных", "опасных"];
-    const titles3 = ["программистов", "студентов", "ослов", "греков", "островитян", "джентельменов"];
+    const titles1 = ["Завоевание", "Поход", "Приключения", "Жизнеопсиание", "История", "Особенности", "Смысл", "Предсказания"];
+    const titles2 = ["отважных", "странных", "юных", "весёлых", "дружных", "опасных", "международных", "мрачных", "новых"];
+    const titles3 = ["программистов", "студентов", "ослов", "греков", "островитян", "джентельменов", "переговоров", "палачей", "замков"];
 
     return randomFromArray(titles1) + " " + randomFromArray(titles2) + " " + randomFromArray(titles3);
 }
 
 function randomFromArray(array) {
     return array[Math.floor(Math.random() * array.length)];
+}
+
+function randomDate(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
+
+function randomIntFromInterval(min, max) {
+    if (min > max) {
+        const temp = min;
+        min = max;
+        max = temp;
+    }
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 function createTable(books) {
@@ -74,6 +91,9 @@ function createTable(books) {
     addTableHeader(tableHead, "Instances");
     addTableHeader(tableHead, "Author");
     addTableHeader(tableHead, "Pages");
+    if (books[0].hasOwnProperty("age")) {
+        addTableHeader(tableHead, "Age");
+    }
 
     table.appendChild(tableHead);
 
@@ -86,7 +106,10 @@ function createTable(books) {
         addTableItem(tableRow, formatDate(book.publishDate));
         addTableItem(tableRow, book.instancesNumber);
         addTableItem(tableRow, book.author.lastName + " " + book.author.firstName + " " + book.author.patronymic);
-        addTableItem(tableRow, book.pages);
+        addTableItem(tableRow, book.pages ? book.pages : "-");
+        if (book.hasOwnProperty("age")) {
+            addTableItem(tableRow, book.age);
+        }
 
         tableBody.appendChild(tableRow);
     });
@@ -119,28 +142,164 @@ function setTableElementStyle(element) {
 function formatDate(date) {
     let result = "";
 
-    if (date.day < 10) {
+    if (date.getDate() < 10) {
         result += "0";
     }
-    result += date.day;
+    result += date.getDate();
     result += ".";
 
-    if (date.month < 10) {
+    if (date.getMonth() + 1 < 10) {
         result += "0";
     }
-    result += date.month;
+    result += date.getMonth() + 1;
     result += ".";
 
-    result += date.year;
+    result += date.getFullYear();
 
     return result;
 }
 
-function randomIntFromInterval(min, max) {
-    if (min > max) {
-        const temp = min;
-        min = max;
-        max = temp;
+function authorClicked() {
+    hideAllFiltering();
+    document.getElementById("filterAuthor").checked = true;
+    document.getElementById("authorFilterBlock").hidden = false;
+    document.getElementById("filterButton").hidden = false;
+}
+
+function genreClicked() {
+    hideAllFiltering();
+    document.getElementById("filterGenre").checked = true;
+    document.getElementById("genreFilterBlock").hidden = false;
+    document.getElementById("filterButton").hidden = false;
+}
+
+function yearClicked() {
+    hideAllFiltering();
+    document.getElementById("filterYear").checked = true;
+    document.getElementById("yearsFilterBlock").hidden = false;
+    document.getElementById("filterButton").hidden = false;
+}
+
+function noFilterClicked() {
+    hideAllFiltering();
+    document.getElementById("filterNo").checked = true;
+    updateTable(books);
+}
+
+function hideAllFiltering() {
+    document.getElementById("filterAuthor").checked = false;
+    document.getElementById("filterGenre").checked = false;
+    document.getElementById("filterYear").checked = false;
+    document.getElementById("filterNo").checked = false;
+
+    document.getElementById("authorFilterBlock").hidden = true;
+    document.getElementById("genreFilterBlock").hidden = true;
+    document.getElementById("yearsFilterBlock").hidden = true;
+
+    document.getElementById("filterButton").hidden = true;
+}
+
+function filterBooks() {
+    if (document.getElementById("filterAuthor").checked) {
+        filterByAuthor();
     }
-    return Math.floor(Math.random() * (max - min + 1) + min)
+    if (document.getElementById("filterGenre").checked) {
+        filterByGenre();
+    }
+    if (document.getElementById("filterYear").checked) {
+        filterByYears();
+    }
+}
+
+function filterByAuthor() {
+    const search = document.getElementsByName("authorLastName")[0].value;
+    const filteredBooks = books.filter(book => book.author.lastName.toLowerCase().includes(search.toLowerCase().trim()));
+    updateTable(filteredBooks);
+}
+
+function filterByGenre() {
+    const genre = document.getElementsByName("genreSelected")[0].value;
+    const filteredBooks = books.filter(book => book.genre === genre);
+    updateTable(filteredBooks);
+}
+
+function filterByYears() {
+    const yearFrom = getYearFrom();
+    const yearTo = getYearTo();
+    const filteredBooks = books.filter(book =>
+        book.publishDate.getFullYear() >= yearFrom && book.publishDate.getFullYear() <= yearTo
+    );
+    updateTable(filteredBooks);
+}
+
+function getYearFrom() {
+    return getYearFromElem("yearFrom");
+}
+
+function getYearTo() {
+    return getYearFromElem("yearTo");
+}
+
+function getYearFromElem(name) {
+    const yearElem = document.getElementsByName(name)[0];
+    let year = Math.floor(Number(yearElem.value));
+
+    if (year < 0) {
+        year = 0;
+    }
+    if (year > 2050) {
+        year = 2050;
+    }
+
+    yearElem.value = year.toString();
+
+    return year;
+}
+
+function removePages() {
+    removeFilter();
+
+    const pagesNumber = getPagesNumber();
+    books.forEach(book => {
+       if (book.pages < pagesNumber) {
+           delete book.pages;
+       }
+    });
+    updateTable(books);
+}
+
+function removeFilter() {
+    hideAllFiltering();
+    document.getElementById("filterNo").checked = true;
+}
+
+function getPagesNumber() {
+    const pagesElem = document.getElementsByName("pagesNumber")[0];
+    let pages = Math.floor(Number(pagesElem.value));
+
+    if (pages < 0) {
+        pages = 0;
+    }
+
+    pagesElem.value = pages.toString();
+
+    return pages;
+}
+
+function showAges() {
+    removeFilter();
+
+    books.map(book => book.age = calculateAge(book.publishDate));
+    updateTable(books);
+}
+
+function calculateAge(from) {
+    let ageDifMs = Date.now() - from;
+    let ageDate = new Date(ageDifMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
+
+function getJSON() {
+    const tab = window.open('about:blank', '_blank');
+    tab.document.write(JSON.stringify(books));
 }
