@@ -296,7 +296,7 @@ function showAges() {
 function calculateAge(from) {
     let ageDifMs = Date.now() - from;
     let ageDate = new Date(ageDifMs);
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
+    return Math.abs(ageDate.getFullYear() - 1970);
 }
 
 function getJSON() {
