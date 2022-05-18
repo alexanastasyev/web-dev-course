@@ -131,7 +131,12 @@
 
                     <td class="function-block">
                         <div class="action-button">
-                            <button onclick="getJSON()">Get as JSON</button>
+                            <button onclick="getJSON()">Save JSON</button>
+                        </div>
+                        <br/>
+                        Load from JSON:
+                        <div class="action-button">
+                            <input type="file" id="input-file" onchange="uploadJSON()">
                         </div>
                     </td>
                 </tr>

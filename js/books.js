@@ -1,4 +1,4 @@
-const books = [];
+let books = [];
 
 function generateBooks() {
     removeFilter();
@@ -261,9 +261,9 @@ function removePages() {
 
     const pagesNumber = getPagesNumber();
     books.forEach(book => {
-       if (book.pages < pagesNumber) {
-           delete book.pages;
-       }
+        if (book.pages < pagesNumber) {
+            delete book.pages;
+        }
     });
     updateTable(books);
 }
@@ -300,6 +300,37 @@ function calculateAge(from) {
 }
 
 function getJSON() {
-    const tab = window.open('about:blank', '_blank');
-    tab.document.write(JSON.stringify(books));
+    let json = (JSON.stringify(books));
+
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(json));
+    element.setAttribute('download', 'books_json.txt');
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
+function uploadJSON() {
+    let file = document.getElementById("input-file").files[0];
+    readFileContent(file).then(content => {
+        let newBooks = JSON.parse(content.toString());
+        newBooks.forEach(book => {
+            book.publishDate = new Date(book.publishDate.toString());
+        });
+        books = newBooks;
+        updateTable(books);
+    }).catch(error => console.log(error))
+}
+
+function readFileContent(file) {
+    const reader = new FileReader()
+    return new Promise((resolve, reject) => {
+        reader.onload = event => resolve(event.target.result)
+        reader.onerror = error => reject(error)
+        reader.readAsText(file)
+    })
 }
