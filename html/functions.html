@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Functions</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script type="text/javascript" src="../js/functions.js"></script>
+</head>
+<body>
+    <div class="content-container">
+        <a href="index.html">
+            <div class="head">
+                <h1 class="main-header">Mobile development</h1>
+                <img class="logo" src="../img/logo.png" alt="logo" width="48" height="48">
+            </div>
+        </a>
+        <div class="nav-panel">
+            <a href="android.html">
+                <div class="nav-button">Android</div>
+            </a>
+            <a href="ios.html">
+                <div class="nav-button">IOS</div>
+            </a>
+            <a href="multiplatform.html">
+                <div class="nav-button">Multiplatform</div>
+            </a>
+            <a href="function.html">
+                <div class="nav-button">Function</div>
+            </a>
+            <a href="table.html">
+                <div class="nav-button">Table</div>
+            </a>
+            <a href="matrix.html">
+                <div class="nav-button">Matrices</div>
+            </a>
+            <a href="books.html">
+                <div class="nav-button">Books</div>
+            </a>
+            <a href="functions.html">
+                <div class="nav-button">Functions</div>
+            </a>
+        </div>
+
+        <div class="main-info">
+
+            <div>
+                <img src="../img/funcs.jpg" alt="functions"/>
+            </div>
+            <br/>
+            <div>
+                <label>
+                    Function:&emsp;
+                    <select name="function">
+                        <option value="f1">f1</option>
+                        <option value="f2">f2</option>
+                        <option value="f3">f3</option>
+                    </select>
+                </label>
+            </div>
+            <br/>
+            <div>
+                <label>
+                    a:&emsp;
+                    <input name="paramA" type="number" value="-5">
+                </label>
+                <label>
+                    &emsp;b:&emsp;
+                    <input name="paramB" type="number" value="5">
+                </label>
+                <label>
+                    &emsp;h:&emsp;
+                    <input name="paramH" type="number" value="1">
+                </label>
+            </div>
+            <br/>
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            Features:
+                            <br/>
+                            <label>
+                                <input name="minimum" type="checkbox">minimum
+                            </label>
+                            <br/>
+                            <label>
+                                <input name="positives" type="checkbox">positive values
+                            </label>
+                            <br/>
+                            <label>
+                                <input name="isIncreasing" type="checkbox">is monotonously increasing
+                            </label>
+                        </td>
+                        <td>
+                            Extra:
+                            <br/>
+                            <label>
+                                <input name="memoization" type="checkbox">memoization
+                            </label>
+                            <br/>
+                            <label>
+                                <input name="debug" type="checkbox">debugging info
+                            </label>
+                            <br/>
+                            <label>
+                                <input name="savingCalls" type="checkbox">saving the number of calls
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <div>
+                <button onclick="calculate()">Calculate</button>
+            </div>
+            <div class="result-block">
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
