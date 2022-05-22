@@ -260,7 +260,7 @@ function Complex(real, imaginary) {
     };
     this.divide = (value) => {
         this.prototype.registerAction("divide", value);
-        if (value.real === 0 || value.imaginary === 0) {
+        if (value.real === 0 && value.imaginary === 0) {
             return NaN;
         }
         const divideRe = value.real;
