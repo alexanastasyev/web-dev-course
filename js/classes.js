@@ -119,7 +119,7 @@ function actionPrintActions() {
         showError();
         return;
     }
-    complex.prototype.logActions();
+    complex.logActions();
     updateResult("See logs.");
 }
 
@@ -128,7 +128,7 @@ function actionClearActions() {
         showError();
         return;
     }
-    complex.prototype.clearActions();
+    complex.clearActions();
     updateResult("Success.");
 }
 
@@ -202,64 +202,46 @@ function showElem(id) {
     document.getElementById(id).hidden = false;
 }
 
-function BaseObject() {
-    const actions = [];
-    this.registerAction = (functionName, ...args) => {
-        actions.push({
-            "function": functionName,
-            "time": JSON.stringify(new Date()),
-            "args": args
-        });
-    };
-    this.clearActions = () => {
-        actions.length = 0;
-    };
-    this.logActions = () => {
-        console.log(actions);
-    };
-}
-
 function Complex(real, imaginary) {
-    this.prototype = new BaseObject();
     this.real = real;
     this.imaginary = imaginary;
 
     this.toString = () => {
-        this.prototype.registerAction("toString");
+        this.registerAction("toString");
         return this.real + (this.imaginary > 0 ? " + " : " - ") + Math.abs(this.imaginary) + "i";
     };
     this.getReal = () => {
-        this.prototype.registerAction("getReal");
+        this.registerAction("getReal");
         return this.real;
     };
     this.setReal = (value) => {
-        this.prototype.registerAction("setReal", value);
+        this.registerAction("setReal", value);
         this.real = value;
     };
     this.getImaginary = () => {
-        this.prototype.registerAction("getImaginary");
+        this.registerAction("getImaginary");
         return this.imaginary;
     };
     this.setImaginary = (value) => {
-        this.prototype.registerAction("setImaginary", value);
+        this.registerAction("setImaginary", value);
         this.imaginary = value;
     };
     this.add = (value) => {
-        this.prototype.registerAction("add", value);
+        this.registerAction("add", value);
         return new Complex(this.real + value.real, this.imaginary + value.imaginary);
     };
     this.subtract = (value) => {
-        this.prototype.registerAction("subtract", value);
+        this.registerAction("subtract", value);
         return new Complex(this.real - value.real, this.imaginary - value.imaginary);
     };
     this.multiply = (value) => {
-        this.prototype.registerAction("multiply", value);
+        this.registerAction("multiply", value);
         const resultRe = this.real * value.real - (this.imaginary * value.imaginary);
         const resultIm = this.real * value.imaginary + value.real * this.imaginary;
         return new Complex(resultRe, resultIm);
     };
     this.divide = (value) => {
-        this.prototype.registerAction("divide", value);
+        this.registerAction("divide", value);
         if (value.real === 0 && value.imaginary === 0) {
             return NaN;
         }
@@ -273,8 +255,23 @@ function Complex(real, imaginary) {
         return new Complex(resultRe, resultIm);
     };
     this.assign = (value) => {
-        this.prototype.registerAction("assign", value);
+        this.registerAction("assign", value);
         this.real = value.real;
         this.imaginary = value.imaginary;
     };
 }
+
+Complex.prototype.actions = [];
+Complex.prototype.registerAction = (functionName, ...args) => {
+    Complex.prototype.actions.push({
+        "function": functionName,
+        "time": JSON.stringify(new Date()),
+        "args": args
+    });
+};
+Complex.prototype.clearActions = () => {
+    Complex.prototype.actions.length = 0;
+};
+Complex.prototype.logActions = () => {
+    console.log(Complex.prototype.actions);
+};
