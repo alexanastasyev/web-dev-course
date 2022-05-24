@@ -157,7 +157,7 @@ function isMonotonouslyIncreasing(f, a, b, h) {
 }
 
 function memoize(f) {
-    const cache = [];
+    const cache = {};
     const memoizedF = (x) => {
         if (x in cache) {
             return cache[x];
@@ -172,17 +172,20 @@ function memoize(f) {
         return cache[x];
     };
     memoizedF.getCacheSize = () => {
-        return cache.length;
+        return Object.keys(cache).length;
     };
+    cloneProps(f, memoizedF);
     return memoizedF;
 }
 
 function debug(f) {
-    return (x) => {
+    const debugF = (x) => {
         const result = f(x);
         console.log(JSON.stringify(new Date()) + "\t f(" + x + ") = " + result);
         return result;
     };
+    cloneProps(f, debugF);
+    return debugF;
 }
 
 function saveCalls(f) {
@@ -190,12 +193,19 @@ function saveCalls(f) {
     const savedCallsF = (x) => {
         calls++;
         return f(x);
-    }
+    };
     savedCallsF.getCalls = () => {
         return calls;
-    }
+    };
     savedCallsF.resetCalls = () => {
         calls = 0;
-    }
+    };
+    cloneProps(f, savedCallsF);
     return savedCallsF;
+}
+
+function cloneProps(source, recipient) {
+    for (let prop in source) {
+        recipient[prop] = source[prop];
+    }
 }
